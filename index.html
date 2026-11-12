@@ -15,11 +15,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!--
-  TRACKING (File 2, Jalur B): tempel snippet GTM kamu di sini (head) dan
-  versi noscript-nya tepat setelah <body>. Halaman ini sudah mengirim
-  dataLayer event view_content dan add_to_cart (lihat script di bawah).
-  Pixel dan tag Meta dipasang lewat GTM, bukan ditulis di file ini.
+  TRACKING: Meta Pixel dipasang langsung di halaman ini (ID 2111768422776057).
+  Event dari halaman ini: PageView, ViewContent, AddToCart.
+  InitiateCheckout dan Purchase terjadi di halaman checkout Lynk, jadi Pixel ID
+  yang sama harus dipasang di pengaturan Lynk (lihat File 2, Jalur A).
+  Kalau nanti pindah ke GTM, hapus blok Pixel di bawah supaya event tidak ganda.
 -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2111768422776057');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2111768422776057&ev=PageView&noscript=1" alt=""></noscript>
 
 <script>
   // Animasi hanya aktif kalau browser mendukung dan pengunjung tidak memilih "kurangi gerakan".
@@ -195,7 +206,6 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 </style>
 </head>
 <body>
-<!-- GTM noscript di sini -->
 
 <!-- 1. HERO -->
 <div class="top-s s-deep"><div class="wrap"><div class="top"><b>@ejjaarf</b><span>Meta Ads Specialist</span></div></div></div>
@@ -392,17 +402,19 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 
 <script>
 (function () {
-  // 1) ISI LINK CHECKOUT DI SINI. Semua tombol akan memakai link ini.
-  var CHECKOUT_URL = '';
+  // Link checkout (Lynk). Semua tombol beli memakai link ini.
+  var CHECKOUT_URL = 'http://lynk.id/ejjjaarf/veko1wr0j22k/checkout';
 
   var PRICE = 129000, CURRENCY = 'IDR';
   window.dataLayer = window.dataLayer || [];
+  function pixel(name, params) { if (typeof fbq === 'function') fbq('track', name, params); }
 
   var ctas = document.querySelectorAll('[data-cta]');
   Array.prototype.forEach.call(ctas, function (a) {
     if (CHECKOUT_URL) a.setAttribute('href', CHECKOUT_URL);
     a.addEventListener('click', function () {
       // File 2: AddToCart = klik tombol beli. Ditembak tiap klik tombol.
+      pixel('AddToCart', { value: PRICE, currency: CURRENCY });
       window.dataLayer.push({ event: 'add_to_cart', value: PRICE, currency: CURRENCY, cta_position: a.getAttribute('data-cta') });
     });
   });
@@ -413,6 +425,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   function viewContent() {
     if (sentVC) return;
     sentVC = true;
+    pixel('ViewContent', { value: PRICE, currency: CURRENCY });
     window.dataLayer.push({ event: 'view_content', value: PRICE, currency: CURRENCY });
   }
   setTimeout(viewContent, 10000);
