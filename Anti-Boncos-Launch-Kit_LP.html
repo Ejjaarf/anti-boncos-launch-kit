@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anti Boncos Launch Kit · Launch produk digital lewat Meta Ads dalam 7 hari</title>
+<meta name="description" content="Kit tertulis Rp129.000 buat advertiser yang pernah boncos dan mau launch produk digital lewat Meta Ads dalam 7 hari, dengan batas rugi yang jelas dari hari pertama.">
+<meta property="og:title" content="Anti Boncos Launch Kit">
+<meta property="og:description" content="6 file tertulis: prompt, tracking, setup campaign, kalkulator, kamus metric, dan SOP evaluasi. Launch produk digital lewat Meta Ads dalam 7 hari.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050813">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  TRACKING (File 2, Jalur B): tempel snippet GTM kamu di sini (head) dan
+  versi noscript-nya tepat setelah <body>. Halaman ini sudah mengirim
+  dataLayer event view_content dan add_to_cart (lihat script di bawah).
+  Pixel dan tag Meta dipasang lewat GTM, bukan ditulis di file ini.
+-->
+
+<script>
+  // Animasi hanya aktif kalau browser mendukung dan pengunjung tidak memilih "kurangi gerakan".
+  (function () {
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !calm) document.documentElement.className += ' js';
+  })();
+</script>
+
+<style>
+:root{--gutter:20px;--btn:#3f6df5;--btn-hover:#5580ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:#050813;color:#eef1fb;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-size:17px;line-height:1.65;padding-bottom:84px;
+  font-feature-settings:'cv11','ss03';
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 var(--gutter)}
+
+/* tema per section */
+section,.top-s{background:var(--sbg);color:var(--fg)}
+.s-deep{--sbg:#050813;--fg:#eef1fb;--muted:#a3accb;--rule:rgba(255,255,255,.13);--num:#5fb8ff;--bar:#5fb8ff;--track:rgba(255,255,255,.14)}
+.s-navy{--sbg:#0c1538;--fg:#eef1fb;--muted:#a9b3d6;--rule:rgba(255,255,255,.14);--num:#5fb8ff;--bar:#5fb8ff;--track:rgba(255,255,255,.15)}
+.s-light{--sbg:#eef1f8;--fg:#0b1022;--muted:#475173;--rule:#cdd4e6;--num:#2447c9;--bar:#2447c9;--track:#d2d9ec}
+.s-royal{--sbg:#1f3fb8;--fg:#ffffff;--muted:rgba(255,255,255,.82);--rule:rgba(255,255,255,.28);--num:#ffffff;--bar:#ffffff;--track:rgba(255,255,255,.26)}
+
+a{color:var(--num)}
+h1,h2,h3{font-family:'Inter Tight','Inter',system-ui,sans-serif;line-height:1.14;letter-spacing:-.012em;word-spacing:.08em;color:var(--fg)}
+h1{font-size:clamp(35px,9vw,58px);font-weight:800;letter-spacing:-.022em}
+h2{font-size:clamp(27px,6.2vw,38px);font-weight:700;margin-bottom:24px}
+h3{font-size:20px;font-weight:700;margin:32px 0 10px}
+p{margin-bottom:16px}
+p:last-child{margin-bottom:0}
+strong{font-weight:700}
+.muted{color:var(--muted)}
+.small{font-size:14.5px;line-height:1.6}
+.nums{font-variant-numeric:tabular-nums}
+
+section{padding:84px 0}
+.top-s{padding:22px 0 0}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--muted)}
+.top b{font-family:'Inter Tight',sans-serif;font-weight:800;color:var(--fg);letter-spacing:-.01em;font-size:17px}
+section.hero{padding:44px 0 88px}
+
+/* button */
+.btn{
+  display:inline-block;background:var(--btn);color:#fff;
+  font-family:'Inter Tight','Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.005em;
+  padding:17px 30px;border-radius:8px;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.btn:hover{background:var(--btn-hover);transform:translateY(-1px)}
+.btn:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #8fb4ff;outline-offset:3px}
+
+/* hero */
+.hero h1{margin-bottom:24px}
+.hw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.hw>span{display:inline-block}
+.hero .lead{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:clamp(20px,5vw,25px);line-height:1.3;letter-spacing:-.01em;margin-bottom:16px}
+.hl{background-image:linear-gradient(var(--num),var(--num));background-repeat:no-repeat;background-position:0 94%;background-size:100% 3px;padding-bottom:2px}
+.hero .sub{color:var(--muted);margin-bottom:32px}
+.hero .facts{margin-top:18px;font-size:14.5px;color:var(--muted)}
+
+/* proof */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:32px 24px;margin:8px 0 38px}
+.stat .n{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(32px,8.6vw,48px);letter-spacing:-.03em;line-height:1.05;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stat .l{font-size:14.5px;color:var(--muted);margin-top:6px}
+.note{margin-top:22px;font-size:14.5px;color:var(--muted);line-height:1.6}
+
+/* masalah */
+.problems{list-style:none;counter-reset:p;margin:0 0 30px}
+.problems li{counter-increment:p;padding:0 0 30px 54px;position:relative}
+.problems li:before{content:counter(p);position:absolute;left:0;top:-3px;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:30px;color:var(--num)}
+.problems b{display:block;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:20px;margin-bottom:6px;color:var(--fg);letter-spacing:-.015em}
+.cost{list-style:none;margin:10px 0 0}
+.cost li{padding:6px 0 6px 22px;position:relative}
+.cost li:before{content:"";position:absolute;left:0;top:18px;width:9px;height:2px;background:var(--num)}
+
+/* files */
+.files{list-style:none;counter-reset:f;margin:26px 0 22px}
+.files li{counter-increment:f;display:grid;grid-template-columns:36px 1fr;gap:4px 8px;padding:0 0 22px}
+.files li:before{content:counter(f,decimal-leading-zero);font-weight:700;font-size:14px;color:var(--num);padding-top:3px;font-variant-numeric:tabular-nums}
+.files b{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;color:var(--fg);letter-spacing:-.01em}
+.files span{display:block;color:var(--muted);font-size:15.5px;line-height:1.55}
+.days{list-style:none;margin:14px 0 0}
+.days li{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:7px 0}
+.days i{font-style:normal;font-weight:700;font-size:14px;color:var(--num);padding-top:2px}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:12px 8px 12px 0;text-align:left;vertical-align:middle;border-top:1px solid var(--rule);font-size:15.5px}
+th{font-weight:600;color:var(--muted);font-size:14px;border-top:0;border-bottom:1px solid var(--muted);padding-top:0}
+tr:last-child td{border-bottom:1px solid var(--rule)}
+.cs{table-layout:fixed}
+.cs th,.cs td{padding-right:10px}
+.cs td.k{font-weight:600}
+.cs .bar{display:inline-block;vertical-align:middle;width:calc(100% - 44px);height:7px;background:var(--track);border-radius:4px;overflow:hidden;margin-right:8px}
+.cs .bar i{display:block;height:100%;background:var(--bar);border-radius:4px;transform-origin:left}
+.cs tr.weak .bar i{opacity:.5}
+.cs tr.weak td{color:var(--muted)}
+.cs td.v{white-space:nowrap}
+.cs td:last-child,.cs th:last-child{text-align:right;padding-right:0}
+.total td{font-weight:700}
+.total .bar{display:none}
+.stack td:last-child{text-align:right;white-space:nowrap;padding-right:0}
+.stack tr.sum td{font-weight:700}
+.price{margin:32px 0 8px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.price s{color:var(--muted);font-size:21px}
+.price b{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(42px,11vw,58px);letter-spacing:-.03em;line-height:1}
+
+/* fit */
+.cols{display:grid;gap:40px}
+.cols ul{list-style:none}
+.cols li{padding:7px 0 7px 26px;position:relative}
+.cols h3{margin-top:0}
+.yes li:before{content:"";position:absolute;left:0;top:17px;width:11px;height:6px;border-left:2px solid var(--num);border-bottom:2px solid var(--num);transform:rotate(-45deg) translateY(-3px)}
+.no li:before{content:"";position:absolute;left:1px;top:20px;width:10px;height:2px;background:var(--muted)}
+
+/* faq */
+details{border-top:1px solid var(--rule)}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;padding:18px 36px 18px 0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;position:relative;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:4px;top:13px;font-size:26px;font-weight:400;color:var(--num)}
+details[open] summary:after{content:"\2212"}
+details p{padding:0 0 20px;color:var(--muted)}
+
+/* final */
+.final h2{font-size:clamp(29px,6.8vw,44px);margin-bottom:28px}
+.disc{margin-top:34px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
+
+/* sticky bar (mobile) */
+.bar-sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;background:#0c1538;color:#fff;
+  border-top:1px solid rgba(255,255,255,.14);padding:10px var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  transform:translateY(110%);transition:transform .25s;
+}
+.bar-sticky.on{transform:none}
+.bar-sticky .p{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:20px;line-height:1.15}
+.bar-sticky .p small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:12.5px;color:#a9b3d6}
+.bar-sticky .btn{padding:13px 20px;font-size:16px;white-space:nowrap}
+
+/* ANIMASI (aktif hanya saat <html class="js">) */
+@keyframes rise{from{transform:translateY(108%)}to{transform:none}}
+@keyframes sweep{from{background-size:0 3px}to{background-size:100% 3px}}
+.js .hw>span{transform:translateY(108%);animation:rise .85s cubic-bezier(.2,.75,.2,1) forwards;animation-delay:calc(var(--i)*65ms + 120ms)}
+.js .hero .lead,.js .hero .sub,.js .hero .btn,.js .hero .facts{opacity:0;transform:translateY(16px);animation:fadeup .8s cubic-bezier(.2,.75,.2,1) forwards}
+.js .hero .lead{animation-delay:.75s}
+.js .hero .sub{animation-delay:.9s}
+.js .hero .btn{animation-delay:1.05s}
+.js .hero .facts{animation-delay:1.15s}
+@keyframes fadeup{to{opacity:1;transform:none}}
+.js .hl{background-size:0 3px;animation:sweep .9s cubic-bezier(.3,.7,.2,1) 1.5s forwards}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.75,.2,1),transform .7s cubic-bezier(.2,.75,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js .cs .bar i{transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.75,.2,1)}
+.js .cs.in .bar i{transform:none}
+
+@media (min-width:720px){
+  :root{--gutter:28px}
+  body{font-size:18px;padding-bottom:0}
+  .stats{grid-template-columns:1fr 1fr}
+  .cols{grid-template-columns:1fr 1fr;gap:48px}
+  section{padding:100px 0}
+  section.hero{padding:56px 0 104px}
+  .bar-sticky{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-sticky{transition:none}}
+</style>
+</head>
+<body>
+<!-- GTM noscript di sini -->
+
+<!-- 1. HERO -->
+<div class="top-s s-deep"><div class="wrap"><div class="top"><b>@ejjaarf</b><span>Meta Ads Specialist</span></div></div></div>
+<section class="hero s-deep" id="atas">
+  <div class="wrap">
+    <h1 aria-label="Iklan lu boncos bukan karena lu gak jago ngiklan.">
+      <span class="hw" aria-hidden="true"><span style="--i:0">Iklan</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:1">lu</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:2">boncos</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:3">bukan</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:4">karena</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:5">lu</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:6">gak</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:7">jago</span></span>
+      <span class="hw" aria-hidden="true"><span style="--i:8">ngiklan.</span></span>
+    </h1>
+    <p class="lead">Biasanya karena <span class="hl">3 hal ini</span> belum beres lu lakuin.</p>
+    <p class="sub">Launch produk digital lu lewat Meta Ads dalam 7 hari, dengan batas rugi yang jelas dari hari pertama.</p>
+    <a class="btn" href="#beli" data-cta="hero">Gue Mau Anti Boncos Launch</a>
+    <p class="facts">Rp129.000 &middot; sekali bayar &middot; 6 file tertulis &middot; tanpa video &middot; tanpa garansi hasil</p>
+  </div>
+</section>
+
+<!-- 2. PROOF -->
+<section class="s-navy" id="proof">
+  <div class="wrap">
+    <h2 class="rv">Angka yang udah kejadian</h2>
+    <div class="stats">
+      <div class="stat rv"><div class="n" data-count="53.3" data-dec="1" data-pre="Rp" data-suf=" jt">Rp53,3 jt</div><div class="l">omzet dari iklan</div></div>
+      <div class="stat rv"><div class="n" data-count="17.99" data-dec="2" data-pre="Rp" data-suf=" jt">Rp17,99 jt</div><div class="l">modal iklan</div></div>
+      <div class="stat rv"><div class="n" data-count="537" data-dec="0">537</div><div class="l">pembelian</div></div>
+      <div class="stat rv"><div class="n" data-count="2.96" data-dec="2" data-suf="x">2,96x</div><div class="l">ROAS</div></div>
+    </div>
+    <p class="rv">Produk digital klien gue (Threads Shopee Affiliate Masterclass), 10 Sep sampai 20 Okt 2026 (41 hari), 6 konsep kreatif dites.</p>
+    <p class="rv">Ini bukan satu iklan yang kebetulan hoki. Dari 6 konsep, 5 jalan di ROAS 2,86 sampai 3,33x. Cara kerjanya gue ubah jadi kit ini.</p>
+    <p class="note rv">Ini hasil klien gue, bukan hasil kit ini dan bukan janji hasil buat lu. Hasil tiap orang beda, tergantung produk, market, dan eksekusinya.</p>
+  </div>
+</section>
+
+<!-- 3. MASALAH -->
+<section class="s-light" id="masalah">
+  <div class="wrap">
+    <h2 class="rv">3 hal yang biasanya belum beres</h2>
+    <ol class="problems">
+      <li class="rv"><b>Konten iklannya terlalu sedikit.</b>Cuma satu atau dua kreatif, terus ditunggu sampai &ldquo;ketemu yang menang&rdquo;. Padahal Meta butuh variasi buat nyari siapa yang mau beli, dan lu butuh beberapa angle buat tau mana yang jalan. Kreatif cuma satu, hasilnya cuma tebakan.</li>
+      <li class="rv"><b>Trafiknya bocor.</b>Orang udah klik iklan lu, tapi gak sampai beli. Mereka nyangkut di LP yang lambat, bingung di form, atau nyerah di checkout. Budget udah kepake buat bawa mereka ke sana, tapi duitnya bocor di tengah jalan.</li>
+      <li class="rv"><b>Gak bisa baca datanya.</b>Angka di Ads Manager banyak banget: CPM, CTR, ATC, IC. Lu gak tau mana yang harus diliat, mana yang bikin boncos, dan kapan harus ambil keputusan. Hasilnya, keputusan lu jatohnya cuma nebak-nebak.</li>
+    </ol>
+    <p class="rv"><strong>Meta Ads bukan tombol &ldquo;jualan otomatis&rdquo;.</strong> Iklan yang winning cuma bisa didapet kalau persiapannya mateng.</p>
+    <p class="muted rv">Kalau tiga hal ini dibiarin:</p>
+    <ul class="cost">
+      <li class="rv">Budget abis buat coba-coba</li>
+      <li class="rv">Lu nyalahin Meta, algoritma, atau diri sendiri</li>
+      <li class="rv">Produk yang bagus mati sebelum ketemu pembelinya</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. SOLUSI -->
+<section class="s-deep" id="solusi">
+  <div class="wrap">
+    <h2 class="rv">Anti Boncos Launch Kit</h2>
+    <p class="rv">Launch produk digital lewat Meta Ads dalam 7 hari. Urutan kerja yang gue pakai buat klien, gue pecah jadi 6 file yang bisa langsung dipakai. Tanpa video, tanpa teori.</p>
+    <ol class="files">
+      <li class="rv"><div><b>Prompt Pack</b><span>Cari ide produk, rapihin offer dan batas rugi, bikin 5 konsep kreatif, tulis copy LP dan copy iklan. Tinggal copas ke ChatGPT, Claude, atau Gemini.</span></div></li>
+      <li class="rv"><div><b>Panduan Tracking</b><span>Pasang Pixel, 5 event, Purchase yang bawa nilai, tes di Test Events, dan cek kualitas event.</span></div></li>
+      <li class="rv"><div><b>Panduan Setup Campaign</b><span>Struktur 1-1-5, setting campaign dan ad set, kapan CBO kapan ABO, dari nol sampai tombol Publish.</span></div></li>
+      <li class="rv"><div><b>Kalkulator (Excel)</b><span>Break-even ROAS, budget harian, dan tangga naik.</span></div></li>
+      <li class="rv"><div><b>Kamus Metric + Dashboard</b><span>Arti tiap metric, rumus funnel, susunan kolom Ads Manager, dan tabel dashboard harian.</span></div></li>
+      <li class="rv"><div><b>SOP Evaluasi</b><span>Kapan ditahan, dibenerin, dimatiin, dan di-scale, pakai aturan yang lu tulis sebelum iklan nyala.</span></div></li>
+    </ol>
+
+    <h3 class="rv">Alur 7 hari</h3>
+    <ol class="days">
+      <li class="rv"><i>Hari 1</i><span>Tentuin offer dan bikin 5 konsep kreatif</span></li>
+      <li class="rv"><i>Hari 2</i><span>Produksi kreatif dan LP jadi</span></li>
+      <li class="rv"><i>Hari 3</i><span>Tracking beres dan cek kebocoran trafik</span></li>
+      <li class="rv"><i>Hari 4</i><span>Setup campaign dan hitung budget</span></li>
+      <li class="rv"><i>Hari 5</i><span>Tayang</span></li>
+      <li class="rv"><i>Hari 6</i><span>Baca data pertama</span></li>
+      <li class="rv"><i>Hari 7</i><span>Putusin tahan, scale, atau matiin</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5. STUDI KASUS -->
+<section class="s-royal" id="studi-kasus">
+  <div class="wrap">
+    <h2 class="rv">Studi kasus: 6 konsep kreatif</h2>
+    <p class="muted small rv" style="margin-bottom:18px">Threads Shopee Affiliate Masterclass, 10 Sep sampai 20 Okt 2026. Diambil dari Ads Manager akun klien, 6 kampanye test CBO. Bar ROAS dimulai dari nol.</p>
+    <table class="cs rv">
+      <colgroup><col style="width:19%"><col style="width:38%"><col style="width:13%"><col style="width:30%"></colgroup>
+      <thead><tr><th>Konsep</th><th>ROAS</th><th>Beli</th><th>Spend</th></tr></thead>
+      <tbody>
+        <tr><td class="k">CP1</td><td class="v"><span class="bar"><i style="width:81.7%"></i></span>2,86</td><td>123</td><td>Rp4,26 jt</td></tr>
+        <tr><td class="k">CP2</td><td class="v"><span class="bar"><i style="width:85.4%"></i></span>2,99</td><td>75</td><td>Rp2,48 jt</td></tr>
+        <tr><td class="k">CP3</td><td class="v"><span class="bar"><i style="width:95.1%"></i></span>3,33</td><td>136</td><td>Rp4,06 jt</td></tr>
+        <tr><td class="k">CP4</td><td class="v"><span class="bar"><i style="width:84.9%"></i></span>2,97</td><td>75</td><td>Rp2,55 jt</td></tr>
+        <tr><td class="k">CP5</td><td class="v"><span class="bar"><i style="width:87.7%"></i></span>3,07</td><td>98</td><td>Rp3,14 jt</td></tr>
+        <tr class="weak"><td class="k">CP6</td><td class="v"><span class="bar"><i style="width:56.6%"></i></span>1,98</td><td>30</td><td>Rp1,50 jt</td></tr>
+        <tr class="total"><td class="k">Total</td><td class="v">2,96</td><td>537</td><td>Rp17,99 jt</td></tr>
+      </tbody>
+    </table>
+    <p class="rv" style="margin-top:24px">Lima konsep jalan di sekitar 3x, satu (CP6) lebih lemah di 1,98x. Keputusan kayak gini yang diatur di SOP Evaluasi, jadi lu gak nebak.</p>
+    <!--
+      OPSIONAL: kalau mau pasang screenshot Ads Manager asli, crop dulu supaya nama akun,
+      tab browser, dan banner verifikasi tidak kelihatan, lalu taruh <img> di sini.
+    -->
+  </div>
+</section>
+
+<!-- 6. ISI + HARGA -->
+<section class="s-light" id="beli">
+  <div class="wrap">
+    <h2 class="rv">Isi kit dan harganya</h2>
+    <p class="muted small rv" style="margin-bottom:18px">Nilai per file adalah perkiraan gue sendiri kalau dikerjain dari nol, bukan harga jual terpisah. File ini gak dijual satuan.</p>
+    <table class="stack rv">
+      <tbody>
+        <tr><td>Prompt Pack</td><td>Rp147.000</td></tr>
+        <tr><td>Panduan Tracking</td><td>Rp147.000</td></tr>
+        <tr><td>Panduan Setup Campaign</td><td>Rp127.000</td></tr>
+        <tr><td>Kalkulator</td><td>Rp97.000</td></tr>
+        <tr><td>Kamus Metric + Dashboard</td><td>Rp97.000</td></tr>
+        <tr><td>SOP Evaluasi</td><td>Rp147.000</td></tr>
+        <tr class="sum"><td>Perkiraan total nilai</td><td>Rp762.000</td></tr>
+      </tbody>
+    </table>
+    <div class="price rv"><s>Rp762.000</s><b>Rp129.000</b></div>
+    <p class="muted rv" style="margin-bottom:28px">Sekali bayar, gak ada biaya bulanan, gak ada upsell biar kit-nya kepake.</p>
+    <a class="btn rv" href="#beli" data-cta="harga">Ambil Kit-nya &middot; Rp129.000</a>
+  </div>
+</section>
+
+<!-- 7. COCOK / GAK COCOK -->
+<section class="s-navy" id="cocok">
+  <div class="wrap">
+    <div class="cols">
+      <div class="yes rv">
+        <h3>Ambil kalau lu:</h3>
+        <ul>
+          <li>Udah pernah ngiklan tapi boncos, dan gak tau salahnya di mana</li>
+          <li>Punya (atau mau bikin) produk digital dan mau iklannya jalan terukur</li>
+          <li>Lebih suka ngerjain langsung daripada nonton kelas</li>
+        </ul>
+      </div>
+      <div class="no rv">
+        <h3>Jangan dulu kalau lu:</h3>
+        <ul>
+          <li>Belum siap sisihin budget buat nge-test iklan</li>
+          <li>Nyari orang yang jalanin iklannya buat lu</li>
+          <li>Nyari mentoring 1-on-1 atau video course</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. TENTANG -->
+<section class="s-deep" id="tentang">
+  <div class="wrap">
+    <h2 class="rv">Tentang gue</h2>
+    <p class="rv">Gue Ejja Arf, Meta Ads Specialist. Udah 3+ tahun dan 250+ advertiser, dari klien produk digital, produk fisik sampai webinar. Kit ini isinya urutan kerja dan aturan yang gue pakai tiap bikin campaign baru.</p>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="s-light" id="faq">
+  <div class="wrap">
+    <h2 class="rv">Yang biasanya ditanyain</h2>
+    <details class="rv"><summary>Ini course?</summary><p>Bukan. Kumpulan prompt, panduan, kalkulator, dan SOP. Lu ngerjain sambil buka filenya.</p></details>
+    <details class="rv"><summary>Harus jago Meta Ads dulu?</summary><p>Gak. Panduannya step by step dari bikin akun iklan.</p></details>
+    <details class="rv"><summary>Harus udah punya produk?</summary><p>Gak. Prompt Pack bantu cari dan rapihin offer-nya.</p></details>
+    <details class="rv"><summary>Ada video?</summary><p>Gak ada. Semua tertulis.</p></details>
+    <details class="rv"><summary>Dijamin dapet sales?</summary><p>Gak ada yang bisa jamin, termasuk gue. Lu dapet urutan kerja dan batas rugi, biar budget gak abis buat coba-coba.</p></details>
+    <details class="rv"><summary>Ada garansi?</summary><p>Gak ada.</p></details>
+  </div>
+</section>
+
+<!-- 10. CTA PENUTUP -->
+<section class="final s-navy" id="penutup">
+  <div class="wrap">
+    <h2 class="rv">Lu gak butuh tutorial ke&#8209;47. Lu butuh urutan kerjanya.</h2>
+    <a class="btn rv" href="#beli" data-cta="penutup">Ambil Kit-nya &middot; Rp129.000</a>
+    <p class="disc rv">Hasil tiap orang beda-beda, tergantung produk, market, dan eksekusinya. Angka di halaman ini hasil klien gue, bukan janji hasil buat lu. Situs ini gak berafiliasi dengan Meta Platforms, Inc.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">&copy; <span id="yr">2026</span> Ejja Arf &middot; @ejjaarf</div></footer>
+
+<div class="bar-sticky" id="sticky" aria-hidden="true">
+  <div class="p">Rp129.000<small>6 file &middot; sekali bayar</small></div>
+  <a class="btn" href="#beli" data-cta="sticky" tabindex="-1">Ambil Kit-nya</a>
+</div>
+
+<script>
+(function () {
+  // 1) ISI LINK CHECKOUT DI SINI. Semua tombol akan memakai link ini.
+  var CHECKOUT_URL = '';
+
+  var PRICE = 129000, CURRENCY = 'IDR';
+  window.dataLayer = window.dataLayer || [];
+
+  var ctas = document.querySelectorAll('[data-cta]');
+  Array.prototype.forEach.call(ctas, function (a) {
+    if (CHECKOUT_URL) a.setAttribute('href', CHECKOUT_URL);
+    a.addEventListener('click', function () {
+      // File 2: AddToCart = klik tombol beli. Ditembak tiap klik tombol.
+      window.dataLayer.push({ event: 'add_to_cart', value: PRICE, currency: CURRENCY, cta_position: a.getAttribute('data-cta') });
+    });
+  });
+
+  // File 2: ViewContent = halaman benar-benar dibaca. Sekali saja:
+  // pertama dari scroll melewati 30% halaman atau 10 detik di halaman.
+  var sentVC = false;
+  function viewContent() {
+    if (sentVC) return;
+    sentVC = true;
+    window.dataLayer.push({ event: 'view_content', value: PRICE, currency: CURRENCY });
+  }
+  setTimeout(viewContent, 10000);
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement;
+    var pct = (h.scrollTop + window.innerHeight) / h.scrollHeight;
+    if (pct > 0.3) viewContent();
+  }, { passive: true });
+
+  // Sticky bar mobile: muncul setelah hero, sembunyi di bagian harga dan penutup.
+  var sticky = document.getElementById('sticky');
+  var hero = document.querySelector('.hero');
+  var hide = [document.getElementById('beli'), document.getElementById('penutup')];
+  var heroOut = false, seen = [false, false];
+  function update() { sticky.classList.toggle('on', heroOut && !seen[0] && !seen[1]); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { heroOut = !e[0].isIntersecting; update(); }).observe(hero);
+    hide.forEach(function (el, i) {
+      new IntersectionObserver(function (e) { seen[i] = e[0].isIntersecting; update(); }).observe(el);
+    });
+  }
+
+  // Animasi muncul saat di-scroll, hitung naik untuk angka, dan bar tumbuh.
+  var js = document.documentElement.className.indexOf('js') > -1;
+  if (js) {
+    // jeda berurutan untuk elemen bersaudara
+    document.querySelectorAll('.wrap').forEach(function (w) {
+      var kids = w.querySelectorAll('.rv'), counts = new Map();
+      kids.forEach(function (el) {
+        var p = el.parentNode, n = counts.get(p) || 0;
+        el.style.transitionDelay = Math.min(n, 6) * 70 + 'ms';
+        counts.set(p, n + 1);
+      });
+    });
+
+    function fmt(v, dec) {
+      return v.toFixed(dec).replace('.', ',');
+    }
+    function countUp(el) {
+      var end = parseFloat(el.getAttribute('data-count')), dec = +el.getAttribute('data-dec') || 0;
+      var pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '';
+      var t0 = null, dur = 1300;
+      function step(t) {
+        if (!t0) t0 = t;
+        var k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = pre + fmt(end * e, dec) + suf;
+        if (k < 1) requestAnimationFrame(step); else el.textContent = pre + fmt(end, dec) + suf;
+      }
+      requestAnimationFrame(step);
+    }
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      var pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '';
+      el.textContent = pre + fmt(0, +el.getAttribute('data-dec') || 0) + suf;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        en.target.querySelectorAll && en.target.querySelectorAll('[data-count]').forEach(countUp);
+        if (en.target.hasAttribute && en.target.hasAttribute('data-count')) countUp(en.target);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  }
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
