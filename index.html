@@ -87,12 +87,21 @@ section.hero{padding:44px 0 88px}
 
 /* button */
 .btn{
-  display:inline-block;background:var(--btn);color:#fff;
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--btn);color:#fff;
   font-family:'Inter Tight','Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.005em;
   padding:17px 30px;border-radius:8px;text-decoration:none;
   transition:background .15s,transform .15s;
 }
 .btn:hover{background:var(--btn-hover);transform:translateY(-1px)}
+.btn .ar{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.btn:hover .ar{transform:translateX(4px)}
+/* efek mengkilat: lewat sekali tiap beberapa detik */
+.btn:after{content:"";position:absolute;top:0;bottom:0;left:0;width:34%;z-index:-1;pointer-events:none;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));
+  transform:translateX(-160%) skewX(-20deg);animation:shine 4.5s ease-in-out 1.5s infinite}
+@keyframes shine{0%,62%{transform:translateX(-160%) skewX(-20deg)}100%{transform:translateX(420%) skewX(-20deg)}}
+@media (prefers-reduced-motion:reduce){.btn:after{animation:none;display:none}.btn .ar{transition:none}}
 .btn:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #8fb4ff;outline-offset:3px}
 
 /* hero */
@@ -241,7 +250,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     <p class="lead">Biasanya karena <span class="hl">3 hal ini</span> yang jadi masalah utamanya.</p>
     <figure class="hero-shot gif"><img src="Leo.gif" width="480" height="270" alt="Leonardo dicaprio"></figure>
     <p class="sub">Launch produk digital lu lewat Meta Ads dalam 7 hari, dengan batas rugi yang jelas dari hari pertama.</p>
-    <a class="btn" href="#beli" data-cta="hero">Gue Mau Anti Boncos Launch</a>
+    <a class="btn" href="#beli" data-cta="hero">Gue Mau Anti Boncos Launch<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="facts">6 file tertulis &middot; tanpa video &middot; langsung contek.</p>
   </div>
 </section>
@@ -353,7 +362,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     </table>
     <div class="price rv"><s>Rp762.000</s><b>Rp99.000</b></div>
     <p class="muted rv" style="margin-bottom:28px">Sekali bayar, langsung praktek</p>
-    <a class="btn rv" href="#beli" data-cta="harga">Gue Mau Anti Boncos Launch Kit</a>
+    <a class="btn rv" href="#beli" data-cta="harga">Gue Mau Anti Boncos Launch Kit<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
@@ -425,7 +434,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   <div class="wrap">
     <h2 class="rv">Lu gak butuh tutorial berjam-jam lagi. Lu butuh urutan kerja yang jelas dan SOP yang tepat.</h2>
     <p class="sub">Contek SOP yang gue pake dan mulai beriklan di Meta ads dengan lebih pede.</p>
-    <a class="btn rv" href="#beli" data-cta="penutup">Ambil Kit-nya &middot; Rp99.000</a>
+    <a class="btn rv" href="#beli" data-cta="penutup">Ambil Kit-nya &middot; Rp99.000<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="disc rv">Hasil tiap orang beda-beda, tergantung produk, market, dan eksekusinya. Angka di halaman ini hasil klien gue, bukan janji hasil buat lu. Situs ini gak berafiliasi dengan Meta Platforms, Inc.</p>
   </div>
 </section>
@@ -434,7 +443,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 
 <div class="bar-sticky" id="sticky" aria-hidden="true">
   <div class="p">Rp99.000<small>6 file &middot; sekali bayar</small></div>
-  <a class="btn" href="#beli" data-cta="sticky" tabindex="-1">Ambil Kit-nya</a>
+  <a class="btn" href="#beli" data-cta="sticky" tabindex="-1">Ambil Kit-nya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
 
 <script>
