@@ -104,6 +104,19 @@ section.hero{padding:44px 0 88px}
 @media (prefers-reduced-motion:reduce){.btn:after{animation:none;display:none}.btn .ar{transition:none}}
 .btn:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #8fb4ff;outline-offset:3px}
 
+
+/* teks berjalan (ganti warna lewat --tk-bg dan --tk-fg) */
+.ticker-w{--tilt:-2.2deg;position:relative;z-index:3;margin:-30px 0;padding:30px 0;overflow-x:clip;pointer-events:none}
+@media (min-width:720px){.ticker-w{--tilt:-1.3deg}}
+@supports not (overflow:clip){body{overflow-x:hidden}}
+.ticker{--tk-bg:#d6283a;--tk-fg:#fff;background:var(--tk-bg);color:var(--tk-fg);overflow:hidden;padding:13px 0;width:calc(100% + 60px);margin-left:-30px;transform:rotate(var(--tilt));box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.tk-track{display:flex;width:max-content;animation:tk 42s linear infinite}
+.tk-g{display:flex;align-items:center;flex:none}
+.tk-i{font-family:'Inter Tight','Inter',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:-.005em;white-space:nowrap}
+.tk-d{width:7px;height:7px;margin:0 22px;border-radius:50%;background:var(--tk-fg);opacity:.7;flex:none}
+@keyframes tk{to{transform:translateX(-50%)}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}
+@media (prefers-reduced-motion:reduce){.ticker{padding:13px calc(var(--gutter) + 30px);text-align:center}.tk-track{animation:none;width:auto;display:block}.tk-g{display:block}.tk-i{white-space:normal}.tk-g .tk-i~*,.tk-g+.tk-g{display:none}}
 /* hero */
 .hero h1{margin-bottom:24px}
 .hw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
@@ -254,6 +267,9 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     <p class="facts">6 file tertulis &middot; tanpa video &middot; langsung contek.</p>
   </div>
 </section>
+
+<!-- TEKS BERJALAN -->
+<div class="ticker-w"><div class="ticker" role="note"><p class="sr-only">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur.</p><div class="tk-track" aria-hidden="true"><div class="tk-g"><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span></div><div class="tk-g"><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span><span class="tk-i">Lu bukan gak jago ngiklan, lu cuma butuh SOP yang jelas dan terstruktur</span><span class="tk-d" aria-hidden="true"></span></div></div></div></div>
 
 <!-- 2. PROBLEM -->
 <section class="s-light" id="masalah">
