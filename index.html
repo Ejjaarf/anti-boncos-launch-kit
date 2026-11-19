@@ -263,7 +263,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     <p class="lead">Biasanya karena <span class="hl">3 hal ini</span> yang jadi masalah utamanya.</p>
     <figure class="hero-shot gif"><img src="Leo.gif" width="480" height="270" alt="Leonardo dicaprio"></figure>
     <p class="sub">Ada contekan buat iklanin produk digital lu tanpa was-was boncos lagi. Tinggal contek.</p>
-    <a class="btn" href="#beli" data-cta="hero">Gue Mau Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn" href="#beli" data-cta="hero" data-go="pricing">Gue Mau Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="facts">6 contekan tertulis &middot; tanpa video &middot; langsung praktek.</p>
   </div>
 </section>
@@ -396,7 +396,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     </table>
     <div class="price rv"><s>Rp762.000</s><b>Rp99.000</b></div>
     <p class="muted rv" style="margin-bottom:28px">Sekali bayar, langsung contek, langsung praktek</p>
-    <a class="btn rv" href="#beli" data-cta="harga">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn rv" href="#beli" data-cta="harga" data-go="checkout">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
@@ -443,7 +443,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   <div class="wrap">
     <h2 class="rv">Lu gak butuh tutorial berjam-jam lagi. Lu butuh contekan yang tinggal lu ikutin.</h2>
     <p class="sub rv">Contek cara gue jalanin iklan klien dan mulai iklanin produk digital lu tanpa was-was boncos lagi.</p>
-    <a class="btn rv" href="#beli" data-cta="penutup">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn rv" href="#beli" data-cta="penutup" data-go="pricing">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="disc rv"><strong>Disclaimer:</strong> Hasil tiap orang beda-beda, tergantung produk, market, dan eksekusinya. Angka di halaman ini hasil klien gue, bukan janji hasil buat siapapun. Yang bisa gue pastiin setelah lu paham SOP yang bener dalam beriklan lu jadi lebih pede buat ngiklan dan bisa ambil keputusan yang tepat diwaktu yang tepat.</p>
   </div>
 </section>
@@ -452,7 +452,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 
 <div class="bar-sticky" id="sticky" aria-hidden="true">
   <div class="p">Rp99.000<small>6 contekan &middot; sekali bayar</small></div>
-  <a class="btn" href="#beli" data-cta="sticky" tabindex="-1">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  <a class="btn" href="#beli" data-cta="sticky" data-go="checkout" tabindex="-1">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
 
 <script>
@@ -464,14 +464,33 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   window.dataLayer = window.dataLayer || [];
   function pixel(name, params) { if (typeof fbq === 'function') fbq('track', name, params); }
 
-  var ctas = document.querySelectorAll('[data-cta]');
-  Array.prototype.forEach.call(ctas, function (a) {
-    if (CHECKOUT_URL) a.setAttribute('href', CHECKOUT_URL);
-    a.addEventListener('click', function () {
-      // File 2: AddToCart = klik tombol beli. Ditembak tiap klik tombol.
-      pixel('AddToCart', { value: PRICE, currency: CURRENCY });
+  // Tombol dengan data-go="checkout" (tombol harga + floating) ke link checkout dan menembak AddToCart.
+  // Tombol dengan data-go="pricing" (hero + penutup) hanya scroll ke bagian harga, tanpa AddToCart.
+  var lastATC = 0;
+  function goCheckout(e) {
+    var a = e.currentTarget, now = Date.now();
+    // Hindari event ganda kalau diklik berulang dalam 1 detik.
+    if (now - lastATC > 1000) {
+      lastATC = now;
+      pixel('AddToCart', { value: PRICE, currency: CURRENCY, content_name: 'Anti Boncos Launch Kit', content_type: 'product' });
       window.dataLayer.push({ event: 'add_to_cart', value: PRICE, currency: CURRENCY, cta_position: a.getAttribute('data-cta') });
-    });
+    }
+    // Klik biasa: tahan sebentar supaya event Pixel sempat terkirim sebelum pindah halaman.
+    // Ctrl/Cmd/Shift/klik tengah (buka tab baru) dibiarkan jalan normal.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+    e.preventDefault();
+    setTimeout(function () { window.location.href = CHECKOUT_URL; }, 200);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
+    if (a.getAttribute('data-go') === 'checkout') {
+      a.setAttribute('href', CHECKOUT_URL);
+      a.addEventListener('click', goCheckout);
+    } else {
+      a.setAttribute('href', '#beli');
+      a.addEventListener('click', function () {
+        window.dataLayer.push({ event: 'click_to_pricing', cta_position: a.getAttribute('data-cta') });
+      });
+    }
   });
 
   // File 2: ViewContent = halaman benar-benar dibaca. Sekali saja:
