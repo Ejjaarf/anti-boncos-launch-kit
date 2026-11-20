@@ -17,8 +17,8 @@
 <!--
   TRACKING: Meta Pixel dipasang langsung di halaman ini (ID 2111768422776057).
   Event dari halaman ini: PageView, ViewContent, AddToCart.
-  InitiateCheckout dan Purchase terjadi di halaman checkout Lynk, jadi Pixel ID
-  yang sama harus dipasang di pengaturan Lynk (lihat File 2, Jalur A).
+  InitiateCheckout dan Purchase terjadi di halaman checkout Scalev, jadi Pixel ID
+  yang sama harus dipasang di pengaturan Scalev (Pixel + Purchase dengan value).
   Kalau nanti pindah ke GTM, hapus blok Pixel di bawah supaya event tidak ganda.
 -->
 <script>
@@ -173,6 +173,13 @@ tr:last-child td{border-bottom:1px solid var(--rule)}
 .price s{color:var(--muted);font-size:21px}
 .price b{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(42px,11vw,58px);letter-spacing:-.03em;line-height:1}
 
+/* setelah pakai ini */
+.after{list-style:none;margin:6px 0 0}
+.after li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--rule)}
+.after li:last-child{border-bottom:1px solid var(--rule)}
+.after svg{flex:none;width:26px;height:26px;margin-top:1px;padding:5px;border-radius:50%;background:rgba(95,184,255,.16);fill:none;stroke:var(--num);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.after b{display:block;font-family:'Inter Tight','Inter',sans-serif;font-weight:700;font-size:18.5px;line-height:1.25;letter-spacing:-.01em;color:var(--fg)}
+.after span{display:block;margin-top:3px;font-size:15.5px;line-height:1.55;color:var(--muted)}
 /* fit */
 .cols{display:grid;gap:40px}
 .cols ul{list-style:none}
@@ -387,6 +394,23 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   </div>
 </section>
 
+<!-- SETELAH PAKAI INI -->
+<section class="s-navy" id="perubahan">
+  <div class="wrap">
+    <h2 class="rv">Setelah pakai ini, lu akan:</h2>
+    <ul class="after">
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Tau batas rugi sebelum iklan nyala.</b><span>Lu udah hitung berapa duit yang boleh hilang, bukan baru sadar pas saldo iklan tipis.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Punya beberapa konsep siap tes.</b><span>Gak lagi ngandelin satu atau dua kreatif sambil berharap.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Tau di mana orang bocor.</b><span>Tracking beres, jadi angka yang lu liat bisa dipercaya.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Paham angka di Ads Manager.</b><span>CPM, CTR, ATC, IC jadi petunjuk, bukan bikin pusing.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Punya aturan tertulis buat ambil keputusan.</b><span>Lanjut, benerin, stop, atau scale: lu tau kapan, gak pakai feeling.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Berhenti nyalahin Meta atau diri sendiri.</b><span>Lu tau akar masalahnya ada di mana.</span></div></li>
+      <li class="rv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Punya urutan kerja 7 hari yang jelas.</b><span>Dari nol sampai iklan tayang, tinggal ikutin.</span></div></li>
+    </ul>
+    <p class="muted small rv" style="margin-top:22px">Yang berubah itu cara lu ngambil keputusan, bukan jaminan penjualan.</p>
+  </div>
+</section>
+
 <section class="s-light" id="beli">
   <div class="wrap">
     <h2 class="rv">Total benefit yang lu dapet</h2>
@@ -406,8 +430,8 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     <a class="btn rv" href="#beli" data-cta="harga" data-go="checkout">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <div class="ck rv">
       <span class="ck-i" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span>
-      <div><b>Checkout 1 menit</b><span>Isi nama, email, dan nomor HP, pilih metode bayar. Pastiin emailnya benar, karena filenya dikirim ke sana.</span>
-        <span class="ck-s"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pembayaran aman, terenkripsi lewat Scalev</span></div>
+      <div><b>Checkout 1 menit</b><span>Isi nama, nomor WhatsApp, dan email, pilih VA/GoPay/DANA atau QRIS, lalu klik <strong>Kirimkan</strong>. Pastiin email dan WhatsApp-nya benar, produknya dikirim ke sana.</span>
+        <span class="ck-s"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pembayaran aman lewat Scalev</span></div>
     </div>
   </div>
 </section>
@@ -469,7 +493,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 
 <script>
 (function () {
-  // Link checkout (Lynk). Semua tombol beli memakai link ini.
+  // Link checkout (Scalev). Tombol harga dan floating memakai link ini.
   var CHECKOUT_URL = 'https://ejja-arf.myscalev.com/checkout-anti-boncos-launch-kit';
 
   var PRICE = 99000, CURRENCY = 'IDR';
