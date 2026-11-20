@@ -181,6 +181,13 @@ tr:last-child td{border-bottom:1px solid var(--rule)}
 .yes li:before{content:"";position:absolute;left:0;top:17px;width:11px;height:6px;border-left:2px solid var(--num);border-bottom:2px solid var(--num);transform:rotate(-45deg) translateY(-3px)}
 .no li:before{content:"";position:absolute;left:1px;top:20px;width:10px;height:2px;background:var(--muted)}
 
+.ck{--ck-bg:#eaf7f0;--ck-bd:#5cb386;--ck-ic:#2f9a69;--ck-t:#1f7a50;--ck-p:#2d6a4b;display:flex;align-items:flex-start;gap:14px;margin-top:20px;padding:16px 18px;border-radius:12px;background:var(--ck-bg);border:1.5px solid var(--ck-bd);box-shadow:0 6px 18px rgba(92,179,134,.18)}
+.ck-i{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#d3eee0;border:1px solid rgba(92,179,134,.55)}
+.ck-i svg{fill:var(--ck-ic)}
+.ck b{display:block;font-family:'Inter Tight','Inter',sans-serif;font-weight:800;font-size:19px;line-height:1.2;letter-spacing:-.01em;color:var(--ck-t)}
+.ck span:not(.ck-i):not(.ck-s){display:block;margin-top:3px;font-size:14.5px;line-height:1.5;font-weight:500;color:var(--ck-p)}
+.ck-s{display:inline-flex;align-items:center;gap:7px;margin-top:11px;padding:6px 12px 6px 10px;border-radius:999px;background:#fff;border:1px solid var(--ck-bd);color:var(--ck-t);font-size:13px;font-weight:700;line-height:1.2}
+.ck-s svg{flex:none;width:14px;height:14px;fill:none;stroke:var(--ck-ic);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 /* faq */
 details{border-top:1px solid var(--rule)}
 details:last-of-type{border-bottom:1px solid var(--rule)}
@@ -397,6 +404,11 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     <div class="price rv"><s>Rp762.000</s><b>Rp99.000</b></div>
     <p class="muted rv" style="margin-bottom:28px">Sekali bayar, langsung contek, langsung praktek</p>
     <a class="btn rv" href="#beli" data-cta="harga" data-go="checkout">Ambil Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="ck rv">
+      <span class="ck-i" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg></span>
+      <div><b>Checkout 1 menit</b><span>Isi nama, email, dan nomor HP, pilih metode bayar, centang persetujuan, lalu klik <strong>Buy Now</strong>. Pastiin emailnya benar, filenya dikirim ke sana.</span>
+        <span class="ck-s"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pembayaran aman, terenkripsi lewat Lynk</span></div>
+    </div>
   </div>
 </section>
 
