@@ -276,7 +276,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     </h1>
     <p class="lead">Biasanya karena <span class="hl">3 hal ini</span> yang jadi masalah utamanya.</p>
     <figure class="hero-shot gif"><img src="Leo.gif" width="480" height="270" alt="Leonardo dicaprio"></figure>
-    <p class="sub">Ada contekan buat iklanin produk digital lu tanpa was-was boncos lagi. Tinggal contek.</p>
+    <p class="sub">Ada contekan buat iklanin produk digital lu tanpa was-was boncos, entah lu baru mau mulai atau mau mulai ulang. Tinggal contek.</p>
     <a class="btn" href="#beli" data-cta="hero" data-go="pricing">Gue Mau Contekannya<svg class="ar" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="facts">6 contekan tertulis &middot; tanpa video &middot; langsung praktek.</p>
   </div>
@@ -390,7 +390,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       <li class="rv"><div><b>Kamus Metric + Dashboard</b><span>Paham angka di Ads Manager.</span></div></li>
       <li class="rv"><div><b>SOP Evaluasi & Optimasi</b><span>Lanjut, benerin, atau stop? Aturannya udah ada.</span></div></li>
     </ol>
-    <p class="rv"><strong>7 hari.</strong> Dari nol sampai iklan tayang. Urutannya ada di dalam.</p>
+    <p class="rv"><strong>7 hari.</strong> Dari nol sampai iklan tayang, baik lu baru mulai atau mulai ulang. Urutannya ada di dalam.</p>
   </div>
 </section>
 
@@ -443,7 +443,8 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
         <h2>Kit ini cocok buat siapa?</h2>
         <h3>Cocok kalau lu:</h3>
         <ul>
-          <li>Udah pernah ngiklan tapi boncos, dan gak tau salahnya di mana</li>
+          <li>Udah pernah ngiklan tapi boncos, dan mau mulai ulang dengan urutan yang jelas</li>
+          <li>Belum pernah ngiklan produk digital, dan gak mau mulai sambil nebak-nebak</li>
           <li>Punya (atau mau bikin) produk digital dan mau iklannya jalan terukur</li>
           <li>Lebih suka ngerjain langsung daripada nonton kelas</li>
         </ul>
@@ -452,7 +453,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
         <h3>Gak cocok kalau lu:</h3>
         <ul>
           <li>Belum siap sisihin budget buat nge-test iklan</li>
-          <li>Belum pernah ngiklan di Meta Ads sama sekali</li>
+          <li>Belum mau buka dan ngatur sendiri akun Meta Ads lu</li>
           <li>Nyari orang yang jalanin iklannya buat lu</li>
         </ul>
       </div>
@@ -464,7 +465,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   <div class="wrap">
     <h2 class="rv">Yang biasanya ditanyain</h2>
     <details class="rv"><summary>Ini course?</summary><p>Bukan. Ini kumpulan prompt, panduan, kalkulator, dan SOP. Lu ngerjain sambil buka filenya. Lebih praktis daripada nonton video course berjam-jam.</p></details>
-    <details class="rv"><summary>Harus jago Meta Ads dulu?</summary><p>Gak harus. Dengan kit ini lu jadi lebih paham alur kerja ngiklan di Meta dan cara evaluasinya.</p></details>
+    <details class="rv"><summary>Harus jago Meta Ads dulu?</summary><p>Gak harus jago. Cukup mau ngerjain langkahnya satu per satu sambil buka Ads Manager. Semuanya tertulis dengan panduan bergambar, tanpa video. Kalau lu belum pernah buka Ads Manager sama sekali, siapin waktu lebih buat ngikutinnya.</p></details>
     <details class="rv"><summary>Harus udah punya produk?</summary><p>Gak harus. Kalau belum punya produk, Prompt Pack-nya bantu cari ide produk, rapihin offer, bikin landing page, sampai bikin kreatifnya.</p></details>
     <details class="rv"><summary>Ada video?</summary><p>Gak ada. Semua tertulis dengan panduan bergambar biar lebih praktis.</p></details>
     <details class="rv"><summary>Kenapa belum ada testimoni pembeli?</summary><p>Kit ini baru dirilis, jadi belum ada testimoni pembeli. Yang gue tampilin di atas adalah hasil iklan klien yang gue jalanin dengan urutan kerja yang sama.</p></details>
@@ -523,8 +524,14 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       a.addEventListener('click', goCheckout);
     } else {
       a.setAttribute('href', '#beli');
-      a.addEventListener('click', function () {
+      a.addEventListener('click', function (e) {
         window.dataLayer.push({ event: 'click_to_pricing', cta_position: a.getAttribute('data-cta') });
+        // Scroll lewat JS tanpa ubah hash URL (#beli), supaya Pixel tidak menembak PageView kedua.
+        var t = document.getElementById('beli');
+        if (t && !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1)) {
+          e.preventDefault();
+          t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     }
   });
