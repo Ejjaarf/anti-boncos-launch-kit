@@ -180,6 +180,15 @@ tr:last-child td{border-bottom:1px solid var(--rule)}
 .after svg{flex:none;width:26px;height:26px;margin-top:1px;padding:5px;border-radius:50%;background:rgba(95,184,255,.16);fill:none;stroke:var(--num);stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
 .after b{display:block;font-family:'Inter Tight','Inter',sans-serif;font-weight:700;font-size:18.5px;line-height:1.25;letter-spacing:-.01em;color:var(--fg)}
 .after span{display:block;margin-top:3px;font-size:15.5px;line-height:1.55;color:var(--muted)}
+/* form checkout tertanam */
+.co-embed{margin-top:34px}
+.co-embed[hidden]{display:none}
+.co-embed h3{margin:0 0 12px}
+.co-box{--co-h:1180px;position:relative;height:var(--co-h);border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--rule);box-shadow:0 8px 26px rgba(11,16,34,.12)}
+@media (min-width:720px){.co-box{--co-h:1120px}}
+.co-load{position:absolute;inset:0;display:grid;place-items:start center;padding-top:70px;margin:0;color:#6b7699;font-size:15px}
+.co-box.ready .co-load{display:none}
+#coFrame{position:relative;display:block;width:100%;height:100%;border:0;background:transparent}
 /* fit */
 .cols{display:grid;gap:40px}
 .cols ul{list-style:none}
@@ -433,6 +442,14 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       <div><b>Checkout 1 menit</b><span>Isi nama, nomor WhatsApp, dan email, pilih VA/GoPay/DANA atau QRIS, lalu klik <strong>Kirimkan</strong>. Pastiin email dan WhatsApp-nya benar, produknya dikirim ke sana.</span>
         <span class="ck-s"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pembayaran aman lewat Scalev</span></div>
     </div>
+    <div class="co-embed" id="checkout" hidden>
+      <h3>Lengkapi data pesanan</h3>
+      <div class="co-box">
+        <p class="co-load" aria-hidden="true">Memuat form checkout...</p>
+        <iframe id="coFrame" title="Checkout Anti Boncos Launch Kit" allow="payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="muted small" style="margin-top:12px">Form gak muncul atau kepotong? <a id="coOpen" href="#" target="_blank" rel="noopener">Buka checkout di tab baru</a>.</p>
+    </div>
   </div>
 </section>
 
@@ -495,12 +512,28 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 (function () {
   // Link checkout (Scalev). Tombol harga dan floating memakai link ini.
   var CHECKOUT_URL = 'https://ejja-arf.myscalev.com/checkout-anti-boncos-launch-kit';
+  // true = form checkout muncul di halaman ini. false = tombol langsung pindah ke halaman checkout.
+  var EMBED_CHECKOUT = true;
+  // Form baru dimuat saat tombol diklik, supaya event Scalev gak ikut nembak ke semua pengunjung LP.
+  function openEmbed() {
+    var box = document.getElementById('checkout'), f = document.getElementById('coFrame');
+    if (!box || !f) return false;
+    if (!f.getAttribute('src')) {
+      f.addEventListener('load', function () { box.querySelector('.co-box').classList.add('ready'); });
+      f.setAttribute('src', CHECKOUT_URL);
+    }
+    box.hidden = false;
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return true;
+  }
+  var coOpen = document.getElementById('coOpen');
+  if (coOpen) coOpen.setAttribute('href', CHECKOUT_URL);
 
   var PRICE = 99000, CURRENCY = 'IDR';
   window.dataLayer = window.dataLayer || [];
   function pixel(name, params) { if (typeof fbq === 'function') fbq('track', name, params); }
 
-  // Tombol dengan data-go="checkout" (tombol harga + floating) ke link checkout dan menembak AddToCart.
+  // Tombol dengan data-go="checkout" (tombol harga + floating) membuka form checkout (atau pindah ke link checkout) dan menembak AddToCart.
   // Tombol dengan data-go="pricing" (hero + penutup) hanya scroll ke bagian harga, tanpa AddToCart.
   var lastATC = 0;
   function goCheckout(e) {
@@ -515,6 +548,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
     // Ctrl/Cmd/Shift/klik tengah (buka tab baru) dibiarkan jalan normal.
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
     e.preventDefault();
+    if (EMBED_CHECKOUT && openEmbed()) return;
     setTimeout(function () { window.location.href = CHECKOUT_URL; }, 200);
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
