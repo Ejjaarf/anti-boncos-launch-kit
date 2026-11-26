@@ -247,6 +247,9 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   .bar-sticky{display:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-sticky{transition:none}}
+.form-embed{margin:28px 0 0;scroll-margin-top:12px}
+.form-embed iframe{display:block;width:100%;min-height:560px;border:0;background:transparent}
+.form-alt{margin-top:14px;font-size:14px;color:var(--muted)}
 .shot{margin:28px 0 0}.shot img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.shot figcaption{margin-top:10px;font-size:13px;opacity:.75}
 .about{display:grid;gap:24px;align-items:center}.about img{width:100%;max-width:300px;height:auto;border-radius:12px}
 @media(min-width:760px){.about{grid-template-columns:260px 1fr;gap:40px}}
@@ -433,6 +436,10 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       <div><b>Checkout 1 menit</b><span>Isi nama, nomor WhatsApp, dan email, pilih VA/GoPay/DANA atau QRIS, lalu klik <strong>Kirimkan</strong>. Pastiin email dan WhatsApp-nya benar, produknya dikirim ke sana.</span>
         <span class="ck-s"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pembayaran aman lewat Scalev</span></div>
     </div>
+    <div class="form-embed" id="form">
+      <iframe id="myiframe" width="100%" frameborder="0" title="Form checkout Anti Boncos Launch Kit" data-src="https://ejja-arf.myscalev.com/checkout-anti-boncos-launch-kit"></iframe>
+    </div>
+    <p class="form-alt">Form gak muncul? <a href="https://ejja-arf.myscalev.com/checkout-anti-boncos-launch-kit">Buka halaman checkout</a>.</p>
   </div>
 </section>
 
@@ -493,16 +500,16 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 
 <script>
 (function () {
-  // Link checkout (Scalev). Tombol harga dan floating memakai link ini.
-  var CHECKOUT_URL = 'https://ejja-arf.myscalev.com/checkout-anti-boncos-launch-kit';
 
   var PRICE = 99000, CURRENCY = 'IDR';
   window.dataLayer = window.dataLayer || [];
   function pixel(name, params) { if (typeof fbq === 'function') fbq('track', name, params); }
 
-  // Tombol dengan data-go="checkout" (tombol harga + floating) ke link checkout dan menembak AddToCart.
-  // Tombol dengan data-go="pricing" (hero + penutup) hanya scroll ke bagian harga, tanpa AddToCart.
+  // Form checkout Scalev sekarang ditanam di halaman (#form).
+  // Tombol data-go="checkout" (tombol harga + floating) menembak AddToCart lalu scroll ke form.
+  // Tombol data-go="pricing" (hero + penutup) hanya scroll ke bagian harga, tanpa AddToCart.
   var lastATC = 0;
+  var formEl = document.getElementById('form');
   function goCheckout(e) {
     var a = e.currentTarget, now = Date.now();
     // Hindari event ganda kalau diklik berulang dalam 1 detik.
@@ -511,15 +518,13 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       pixel('AddToCart', { value: PRICE, currency: CURRENCY, content_name: 'Anti Boncos Launch Kit', content_type: 'product' });
       window.dataLayer.push({ event: 'add_to_cart', value: PRICE, currency: CURRENCY, cta_position: a.getAttribute('data-cta') });
     }
-    // Klik biasa: tahan sebentar supaya event Pixel sempat terkirim sebelum pindah halaman.
-    // Ctrl/Cmd/Shift/klik tengah (buka tab baru) dibiarkan jalan normal.
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
     e.preventDefault();
-    setTimeout(function () { window.location.href = CHECKOUT_URL; }, 200);
+    if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
     if (a.getAttribute('data-go') === 'checkout') {
-      a.setAttribute('href', CHECKOUT_URL);
+      a.setAttribute('href', '#form');
       a.addEventListener('click', goCheckout);
     } else {
       a.setAttribute('href', '#beli');
@@ -534,6 +539,31 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
       });
     }
   });
+
+  // Embed Scalev: iframe dimuat saat mendekati layar (bukan saat halaman dibuka) supaya LP tetap cepat.
+  // Resize dan redirect pasca-bayar mengikuti snippet resmi Scalev.
+  var iframe = document.getElementById('myiframe');
+  var SCALEV_ORIGIN = 'https://ejja-arf.myscalev.com';
+  function resizeIframe(height) { iframe.style.height = height + 'px'; }
+  function isUrl(str) { try { new URL(str); return true; } catch (_) { return false; } }
+  function isJSONObject(str) { try { var p = JSON.parse(str); return typeof p === 'object' && p !== null; } catch (e) { return false; } }
+  function isIframeSameOrigin() { try { var d = iframe.contentDocument || iframe.contentWindow.document; return true; } catch (e) { return false; } }
+  window.addEventListener('message', function (e) {
+    if (e.origin === SCALEV_ORIGIN) {
+      if (isUrl(e.data)) { location.href = e.data; }
+      if (isJSONObject(e.data) && !isIframeSameOrigin()) {
+        var message = JSON.parse(e.data);
+        if (message.type === 'resize') { resizeIframe(message.height); }
+      }
+    }
+  }, false);
+  function loadForm() { if (!iframe.getAttribute('src')) iframe.src = iframe.getAttribute('data-src'); }
+  if ('IntersectionObserver' in window) {
+    var fo = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { loadForm(); fo.disconnect(); }
+    }, { rootMargin: '800px 0px' });
+    fo.observe(iframe);
+  } else { loadForm(); }
 
   // File 2: ViewContent = halaman benar-benar dibaca. Sekali saja:
   // pertama dari scroll melewati 30% halaman atau 10 detik di halaman.
