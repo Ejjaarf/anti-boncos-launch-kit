@@ -251,6 +251,11 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 .form-embed iframe{display:block;width:100%;min-height:900px;border:0;background:transparent}
 .form-alt{margin-top:14px;font-size:14px;color:var(--muted)}
 .shot{margin:28px 0 0}.shot img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.shot figcaption{margin-top:10px;font-size:13px;opacity:.75}
+.me{background:#f3eee4;color:#161a2b;--fg:#161a2b;--muted:#5a5f73;--num:#2447c9;border-radius:14px;padding:26px 22px}
+.me p{font-style:italic}
+.me p:last-child{margin-bottom:0}
+.me .who{margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid rgba(22,26,43,.14)}
+@media(min-width:760px){.me{padding:34px 34px}}
 .who{display:flex;align-items:center;gap:18px;margin:0 0 26px}
 .who-t b{display:block;font-family:'Inter Tight','Inter',sans-serif;font-weight:800;font-size:clamp(20px,5.4vw,26px);line-height:1.2;letter-spacing:-.01em}
 .who-t b span{color:var(--num);font-weight:400;margin:0 2px}
@@ -323,13 +328,15 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 <section class="s-navy" id="tentang">
   <div class="wrap">
     <h2 class="rv">Satu hal yang selalu gue tulis sebelum iklan klien nyala</h2>
-    <div class="who rv">
-      <img src="Ejja%20Arf%20(1).png" width="1024" height="1277" loading="lazy" alt="Ejja Arf, Meta Ads Specialist">
-      <div class="who-t"><b>Ejja Arf <span>|</span> Meta Ads Specialist</b><span>7 Years Experiences of Digital Marketing</span></div>
+    <div class="me rv">
+      <div class="who">
+        <img src="Ejja%20Arf%20(1).png" width="1024" height="1277" loading="lazy" alt="Ejja Arf, Meta Ads Specialist">
+        <div class="who-t"><b>Ejja Arf <span>|</span> Meta Ads Specialist</b><span>7 Years Experiences of Digital Marketing</span></div>
+      </div>
+      <p>Kenalin gue Ejja Arf, Meta Ads Specialist yang udah 7 tahun berkecimpung di dunia digital marketing. Udah banyak iklan produk digital, produk fisik, sampai webinar yang gue pegang.</p>
+      <p>Dan sebelum iklan apapun nyala, ada satu hal yang selalu gue tulis dulu. Bukan kreatifnya. Bukan audience-nya.</p>
+      <p>Itu yang bikin gue tau berapa duit yang boleh hilang, kapan harus lanjut, dan kapan harus berhenti. Sekarang gue rangkum jadi contekan buat lu pakai di produk lu sendiri.</p>
     </div>
-    <p class="rv">Kenalin gue Ejja Arf, Meta Ads Specialist yang udah 7 tahun berkecimpung di dunia digital marketing. Udah banyak iklan produk digital, produk fisik, sampai webinar yang gue pegang.</p>
-    <p class="rv">Dan sebelum iklan apapun nyala, ada satu hal yang selalu gue tulis dulu. Bukan kreatifnya. Bukan audience-nya.</p>
-    <p class="rv">Itu yang bikin gue tau berapa duit yang boleh hilang, kapan harus lanjut, dan kapan harus berhenti. Sekarang gue rangkum jadi contekan buat lu pakai di produk lu sendiri.</p>
   </div>
 </section>
 
@@ -547,7 +554,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   // Resize dan redirect pasca-bayar mengikuti snippet resmi Scalev.
   var iframe = document.getElementById('myiframe');
   var SCALEV_ORIGIN = 'https://ejja-arf.myscalev.com';
-  var EXTRA = 200; // cadangan px di bawah form. Naikkan kalau form masih ke-scroll di dalam iframe, turunkan kalau jarak kosongnya terlalu besar.
+  var EXTRA = 300; // cadangan px di bawah form. Naikkan kalau form masih ke-scroll di dalam iframe, turunkan kalau jarak kosongnya terlalu besar.
   function resizeIframe(height) { iframe.style.height = (Math.ceil(height) + EXTRA) + 'px'; }
   function isUrl(str) { try { new URL(str); return true; } catch (_) { return false; } }
   function isJSONObject(str) { try { var p = JSON.parse(str); return typeof p === 'object' && p !== null; } catch (e) { return false; } }
