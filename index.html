@@ -251,8 +251,12 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 .form-embed iframe{display:block;width:100%;min-height:760px;border:0;background:transparent}
 .form-alt{margin-top:14px;font-size:14px;color:var(--muted)}
 .shot{margin:28px 0 0}.shot img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.shot figcaption{margin-top:10px;font-size:13px;opacity:.75}
-.about{display:grid;gap:24px;align-items:center}.about img{width:100%;max-width:300px;height:auto;border-radius:12px}
-@media(min-width:760px){.about{grid-template-columns:260px 1fr;gap:40px}}
+.who{display:flex;align-items:center;gap:18px;margin:0 0 26px}
+.who-t b{display:block;font-family:'Inter Tight','Inter',sans-serif;font-weight:800;font-size:clamp(20px,5.4vw,26px);line-height:1.2;letter-spacing:-.01em}
+.who-t b span{color:var(--num);font-weight:400;margin:0 2px}
+.who-t>span{display:block;margin-top:6px;font-size:15px;color:var(--muted)}
+.who img{flex:none;width:104px;height:auto;border-radius:12px}
+@media(min-width:760px){.who img{width:132px}}
 .clients{display:grid;grid-template-columns:1fr;gap:10px;margin:26px 0 16px}.clients .c{overflow:hidden;border-radius:8px;background:#fff;aspect-ratio:1265/400}.clients img{display:block;width:118%;max-width:none;height:auto;margin:0 0 0 -9%}
 @media(min-width:620px){.clients{grid-template-columns:1fr 1fr;gap:14px}}
 .hero-shot{margin:40px 0 0}.hero-shot img{display:block;width:100%;height:auto;border-radius:12px;background:#fff}.hero-shot figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
@@ -319,14 +323,13 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 <section class="s-navy" id="tentang">
   <div class="wrap">
     <h2 class="rv">Satu hal yang selalu gue tulis sebelum iklan klien nyala</h2>
-    <div class="about">
-      <img class="rv" src="Ejja%20Arf%20(1).png" width="1024" height="1277" loading="lazy" alt="Ejja Arf, Meta Ads Specialist">
-      <div>
-        <p class="rv">Kenalin gue Ejja Arf, Meta Ads Specialist yang udah 7 tahun berkecimpung di dunia digital marketing. Udah banyak iklan produk digital, produk fisik, sampai webinar yang gue pegang.</p>
-        <p class="rv">Dan sebelum iklan apapun nyala, ada satu hal yang selalu gue tulis dulu. Bukan kreatifnya. Bukan audience-nya.</p>
-        <p class="rv">Itu yang bikin gue tau berapa duit yang boleh hilang, kapan harus lanjut, dan kapan harus berhenti. Sekarang gue rangkum jadi contekan buat lu pakai di produk lu sendiri.</p>
-      </div>
+    <div class="who rv">
+      <img src="Ejja%20Arf%20(1).png" width="1024" height="1277" loading="lazy" alt="Ejja Arf, Meta Ads Specialist">
+      <div class="who-t"><b>Ejja Arf <span>|</span> Meta Ads Specialist</b><span>7 Years Experiences of Digital Marketing</span></div>
     </div>
+    <p class="rv">Kenalin gue Ejja Arf, Meta Ads Specialist yang udah 7 tahun berkecimpung di dunia digital marketing. Udah banyak iklan produk digital, produk fisik, sampai webinar yang gue pegang.</p>
+    <p class="rv">Dan sebelum iklan apapun nyala, ada satu hal yang selalu gue tulis dulu. Bukan kreatifnya. Bukan audience-nya.</p>
+    <p class="rv">Itu yang bikin gue tau berapa duit yang boleh hilang, kapan harus lanjut, dan kapan harus berhenti. Sekarang gue rangkum jadi contekan buat lu pakai di produk lu sendiri.</p>
   </div>
 </section>
 
