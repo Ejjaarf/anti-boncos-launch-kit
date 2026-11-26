@@ -547,7 +547,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   // Resize dan redirect pasca-bayar mengikuti snippet resmi Scalev.
   var iframe = document.getElementById('myiframe');
   var SCALEV_ORIGIN = 'https://ejja-arf.myscalev.com';
-  var EXTRA = 50; // cadangan px di bawah form. Naikkan kalau form masih ke-scroll di dalam iframe, turunkan kalau jarak kosongnya terlalu besar.
+  var EXTRA = 100; // cadangan px di bawah form. Naikkan kalau form masih ke-scroll di dalam iframe, turunkan kalau jarak kosongnya terlalu besar.
   function resizeIframe(height) { iframe.style.height = (Math.ceil(height) + EXTRA) + 'px'; }
   function isUrl(str) { try { new URL(str); return true; } catch (_) { return false; } }
   function isJSONObject(str) { try { var p = JSON.parse(str); return typeof p === 'object' && p !== null; } catch (e) { return false; } }
