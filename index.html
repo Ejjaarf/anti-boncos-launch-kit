@@ -248,7 +248,7 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar-sticky{transition:none}}
 .form-embed{margin:28px 0 0;scroll-margin-top:12px}
-.form-embed iframe{display:block;width:100%;min-height:760px;border:0;background:transparent}
+.form-embed iframe{display:block;width:100%;min-height:900px;border:0;background:transparent}
 .form-alt{margin-top:14px;font-size:14px;color:var(--muted)}
 .shot{margin:28px 0 0}.shot img{display:block;width:100%;height:auto;border-radius:10px;background:#fff}.shot figcaption{margin-top:10px;font-size:13px;opacity:.75}
 .who{display:flex;align-items:center;gap:18px;margin:0 0 26px}
@@ -547,17 +547,18 @@ footer{background:#050813;color:#8e98ba;padding:22px 0 42px;font-size:13.5px}
   // Resize dan redirect pasca-bayar mengikuti snippet resmi Scalev.
   var iframe = document.getElementById('myiframe');
   var SCALEV_ORIGIN = 'https://ejja-arf.myscalev.com';
-  function resizeIframe(height) { iframe.style.height = (Math.ceil(height) + 120) + 'px'; } // +120px cadangan supaya form gak ke-scroll di dalam iframe
+  var EXTRA = 300; // cadangan px di bawah form. Naikkan kalau form masih ke-scroll di dalam iframe, turunkan kalau jarak kosongnya terlalu besar.
+  function resizeIframe(height) { iframe.style.height = (Math.ceil(height) + EXTRA) + 'px'; }
   function isUrl(str) { try { new URL(str); return true; } catch (_) { return false; } }
   function isJSONObject(str) { try { var p = JSON.parse(str); return typeof p === 'object' && p !== null; } catch (e) { return false; } }
   function isIframeSameOrigin() { try { var d = iframe.contentDocument || iframe.contentWindow.document; return true; } catch (e) { return false; } }
   window.addEventListener('message', function (e) {
     if (e.origin === SCALEV_ORIGIN) {
       if (isUrl(e.data)) { location.href = e.data; }
-      if (isJSONObject(e.data) && !isIframeSameOrigin()) {
-        var message = JSON.parse(e.data);
-        if (message.type === 'resize') { resizeIframe(message.height); }
-      }
+      var message = null;
+      if (typeof e.data === 'object' && e.data !== null) { message = e.data; }
+      else if (isJSONObject(e.data) && !isIframeSameOrigin()) { message = JSON.parse(e.data); }
+      if (message && message.type === 'resize' && +message.height > 0) { resizeIframe(+message.height); }
     }
   }, false);
   function loadForm() { if (!iframe.getAttribute('src')) iframe.src = iframe.getAttribute('data-src'); }
